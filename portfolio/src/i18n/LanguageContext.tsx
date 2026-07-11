@@ -215,7 +215,7 @@ const content: Record<Language, LanguageContent> = {
     },
     stats: [
       {
-        value: '4',
+        value: '8',
         label: 'منصات مباشرة',
         description: 'Madan App و Nooha و Queens Salon و Maedin Decor.',
       },
