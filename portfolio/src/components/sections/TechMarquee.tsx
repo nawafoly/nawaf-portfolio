@@ -6,7 +6,7 @@ export function TechMarquee() {
   const repeatedTechs = [...techs, ...techs]
 
   return (
-    <section aria-label="Technology stack" className="overflow-hidden border-y border-border py-6">
+    <section aria-label="Technology stack" className="mobile-tech-marquee overflow-hidden border-y border-border py-6">
       <div className="flex">
         <div
           className={`flex min-w-max gap-12 px-6 ${reduceMotion ? '' : 'animate-marquee'}`}

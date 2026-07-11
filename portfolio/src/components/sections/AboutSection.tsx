@@ -11,7 +11,7 @@ export function AboutSection() {
   ]
 
   return (
-    <section id="about" className="section-padding bg-bg">
+    <section id="about" className="mobile-about-section section-padding bg-bg">
       <div className="container-shell grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
           <SectionHeading
@@ -27,7 +27,7 @@ export function AboutSection() {
 
             return (
               <Reveal key={item.title} delay={index * 0.06}>
-                <article className="panel p-6">
+                <article className="mobile-about-card panel p-6">
                   <div className="flex gap-4">
                     <div className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-elevated text-accent">
                       <Icon aria-hidden="true" size={20} />

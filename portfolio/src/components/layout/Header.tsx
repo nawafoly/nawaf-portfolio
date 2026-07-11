@@ -20,7 +20,25 @@ export function Header() {
           isScrolled ? 'border-b border-border bg-bg/84 backdrop-blur-md' : 'bg-transparent'
         }`}
       >
-        <div className="container-shell flex h-20 items-center justify-between gap-4">
+        <div className="mobile-app-topbar container-shell md:hidden">
+          <a href="#home" className="focus-ring mobile-app-identity">
+            <img src={profile.heroImage} alt="" className="mobile-app-identity__avatar" />
+            <span className="mobile-app-identity__copy">
+              <strong>{profile.name}</strong>
+              <small>{content.hero.title}</small>
+            </span>
+          </a>
+
+          <button
+            type="button"
+            className="focus-ring mobile-app-language-button"
+            onClick={toggleLanguage}
+          >
+            {content.common.languageToggle}
+          </button>
+        </div>
+
+        <div className="container-shell hidden h-20 items-center justify-between gap-4 md:flex">
           <a href="#home" className="focus-ring rounded-lg text-lg font-semibold text-text-primary">
             {profile.name}
           </a>

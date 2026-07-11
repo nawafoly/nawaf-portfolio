@@ -17,7 +17,7 @@ interface CaseSectionProps {
 function CaseSection({ eyebrow, title, children }: CaseSectionProps) {
   return (
     <Reveal>
-      <section className="border-t border-border py-10">
+      <section className="case-study-section border-t border-border py-10">
         <p className="text-sm font-semibold uppercase text-accent">{eyebrow}</p>
         <h2 className="mt-3 text-2xl font-semibold text-text-primary sm:text-3xl">{title}</h2>
         <div className="mt-5 text-base leading-8 text-text-secondary">{children}</div>
@@ -61,7 +61,7 @@ export function ProjectCaseStudyPage() {
   const nextProjectText = nextProject ? projectText(nextProject) : undefined
 
   return (
-    <article className="pt-28">
+    <article className="case-study-page pt-28">
       <div className="container-shell pb-20">
         <Link
           to="/"
@@ -72,7 +72,7 @@ export function ProjectCaseStudyPage() {
         </Link>
 
         <Reveal>
-          <header className="py-12">
+          <header className="case-study-hero py-12">
             <p className="text-sm font-semibold uppercase text-accent">{text.category}</p>
             <h1 className="mt-4 max-w-5xl text-4xl font-semibold leading-tight text-text-primary sm:text-6xl">
               {project.name}
@@ -105,13 +105,13 @@ export function ProjectCaseStudyPage() {
 
         <Reveal>
           {project.coverImage ? (
-            <img src={project.coverImage} alt="" className="aspect-[21/9] w-full rounded-lg object-cover" />
+            <img src={project.coverImage} alt="" className="case-study-cover aspect-[21/9] w-full rounded-lg object-cover" />
           ) : (
             <ImagePlaceholder aspect="21/9" label={`${project.name} cover image`} />
           )}
         </Reveal>
 
-        <div className="mx-auto mt-10 max-w-4xl">
+        <div className="case-study-content mx-auto mt-10 max-w-4xl">
           <CaseSection eyebrow={content.caseStudyPage.demoEyebrow} title={content.caseStudyPage.demoTitle}>
             <video
               className="aspect-video w-full rounded-lg border border-border bg-bg object-cover"
@@ -184,7 +184,7 @@ export function ProjectCaseStudyPage() {
           </CaseSection>
 
           <CaseSection eyebrow={content.caseStudyPage.galleryEyebrow} title={content.caseStudyPage.galleryTitle}>
-            <div className="grid gap-5">
+            <div className="case-study-gallery grid gap-5">
               <DeviceFrame device="desktop" title={project.name}>
                 <img
                   src={project.media.desktop}
@@ -224,7 +224,7 @@ export function ProjectCaseStudyPage() {
 
           {nextProject ? (
             <Reveal>
-              <section className="mt-10 rounded-lg border border-accent/30 bg-surface p-6 sm:p-8">
+              <section className="case-study-next mt-10 rounded-lg border border-accent/30 bg-surface p-6 sm:p-8">
                 <p className="text-sm font-semibold uppercase text-accent">
                   {content.caseStudyPage.nextProject}
                 </p>

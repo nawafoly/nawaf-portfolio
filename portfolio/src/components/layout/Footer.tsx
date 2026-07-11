@@ -7,7 +7,7 @@ export function Footer() {
   const { content } = useLanguage()
 
   return (
-    <footer className="border-t border-border bg-bg/70 py-10">
+    <footer className="mobile-app-footer border-t border-border bg-bg/70 py-10">
       <div className="container-shell flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-text-secondary">

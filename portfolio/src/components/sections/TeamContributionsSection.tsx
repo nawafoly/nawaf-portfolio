@@ -50,7 +50,7 @@ export function TeamContributionsSection() {
   const text = copy[language]
 
   return (
-    <section className="section-padding border-y border-border bg-surface/20">
+    <section className="mobile-team-section section-padding border-y border-border bg-surface/20">
       <div className="container-shell">
         <Reveal>
           <SectionHeading
@@ -60,10 +60,10 @@ export function TeamContributionsSection() {
           />
         </Reveal>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
+        <div className="mobile-team-grid mt-10 grid gap-4 md:grid-cols-2">
           {teamSites.map((site, index) => (
             <Reveal key={site.url} delay={index * 0.05}>
-              <article className="panel h-full p-5 transition hover:border-accent/60">
+              <article className="mobile-team-card panel h-full p-5 transition hover:border-accent/60">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">

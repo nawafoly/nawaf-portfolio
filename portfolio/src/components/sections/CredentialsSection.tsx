@@ -8,7 +8,7 @@ export function CredentialsSection() {
   const { content, certificateText } = useLanguage()
 
   return (
-    <section id="credentials" className="section-padding bg-bg">
+    <section id="credentials" className="mobile-credentials-section section-padding bg-bg">
       <div className="container-shell">
         <Reveal>
           <SectionHeading
@@ -18,13 +18,13 @@ export function CredentialsSection() {
           />
         </Reveal>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
+        <div className="mobile-credentials-grid mt-10 grid gap-5 lg:grid-cols-3">
           {featuredCertificates.map((certificate, index) => {
             const text = certificateText(certificate)
 
             return (
               <Reveal key={certificate.id} delay={index * 0.06}>
-                <article className="panel h-full overflow-hidden">
+                <article className="mobile-certificate-card panel h-full overflow-hidden">
                   <a
                     href={certificate.image}
                     target="_blank"

@@ -9,9 +9,9 @@ export function HeroSection() {
   const { content } = useLanguage()
 
   return (
-    <section id="home" className="min-h-screen pt-28 sm:pt-32">
-      <div className="container-shell grid min-h-[calc(100svh-8rem)] items-center gap-12 pb-16 lg:grid-cols-[1.08fr_0.92fr]">
-        <Reveal className="order-last lg:order-first">
+    <section id="home" className="mobile-app-hero min-h-screen pt-28 sm:pt-32">
+      <div className="mobile-hero-grid container-shell grid min-h-[calc(100svh-8rem)] items-center gap-12 pb-16 lg:grid-cols-[1.08fr_0.92fr]">
+        <Reveal className="mobile-hero-copy order-last lg:order-first">
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-4 py-2 text-sm text-text-secondary">
               <Sparkles aria-hidden="true" size={16} className="text-accent" />
@@ -25,7 +25,7 @@ export function HeroSection() {
               </span>
             </h1>
 
-            <div className="mt-7 flex flex-wrap gap-2">
+            <div className="mobile-hero-tags mt-7 flex flex-wrap gap-2">
               {content.hero.tags.map((tag) => (
                 <span key={tag} className="chip">
                   {tag}
@@ -37,7 +37,7 @@ export function HeroSection() {
               {content.hero.shortBio}
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mobile-hero-actions mt-8 flex flex-col gap-3 sm:flex-row">
               <PrimaryButton href="#work-showcase" icon={ArrowRight}>
                 {content.common.viewWork}
               </PrimaryButton>
@@ -49,7 +49,7 @@ export function HeroSection() {
               </SecondaryButton>
             </div>
 
-            <dl className="mt-9 grid gap-3 sm:grid-cols-2">
+            <dl className="mobile-hero-meta mt-9 grid gap-3 sm:grid-cols-2">
               <div className="panel p-4">
                 <dt className="flex items-center gap-2 text-sm text-text-secondary">
                   <MapPin aria-hidden="true" size={16} className="text-cool" />
@@ -65,10 +65,10 @@ export function HeroSection() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.12} className="order-first lg:order-last">
-          <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+        <Reveal delay={0.12} className="mobile-hero-media order-first lg:order-last">
+          <div className="mobile-hero-image-wrap relative mx-auto w-full max-w-md lg:max-w-none">
             <div className="absolute -inset-3 rounded-lg border border-accent/20" />
-            <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-border bg-surface shadow-2xl">
+            <div className="mobile-hero-image-card relative aspect-[4/5] overflow-hidden rounded-lg border border-border bg-surface shadow-2xl">
               <img
                 src={profile.heroImage}
                 alt={`${profile.name} portrait`}

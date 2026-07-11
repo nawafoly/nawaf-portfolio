@@ -17,7 +17,11 @@ interface WorkShowcaseProps {
 }
 
 export function WorkShowcase({ activeSlug, onActiveSlugChange }: WorkShowcaseProps) {
-  const [device, setDevice] = useState<DeviceType>('desktop')
+  const [device, setDevice] = useState<DeviceType>(() =>
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
+      ? 'mobile'
+      : 'desktop',
+  )
   const reduceMotion = useReducedMotion()
   const { content, projectText } = useLanguage()
   const activeIndex = Math.max(
@@ -42,8 +46,8 @@ export function WorkShowcase({ activeSlug, onActiveSlugChange }: WorkShowcasePro
   }
 
   return (
-    <section id="work-showcase" className="section-padding border-b border-border bg-surface/20">
-      <div className="mx-auto w-[calc(100%_-_2rem)] max-w-[1320px]">
+    <section id="work-showcase" className="mobile-work-showcase section-padding border-b border-border bg-surface/20">
+      <div className="mobile-work-container mx-auto w-[calc(100%_-_2rem)] max-w-[1320px]">
         <Reveal>
           <SectionHeading
             eyebrow={content.showcase.eyebrow}
@@ -54,11 +58,12 @@ export function WorkShowcase({ activeSlug, onActiveSlugChange }: WorkShowcasePro
 
         <Reveal delay={0.05}>
           <div
-            className="mt-8 flex gap-2 overflow-x-auto pb-2"
+            className="mobile-project-tabs mt-8 grid grid-cols-2 gap-2 rounded-xl border border-border bg-bg/70 p-2 shadow-[0_16px_50px_rgba(0,0,0,0.28)] md:grid-cols-4"
             role="tablist"
             aria-label={content.showcase.tabsLabel}
+            dir="ltr"
           >
-            {projects.map((project) => {
+            {projects.map((project, index) => {
               const active = project.slug === activeProject.slug
 
               return (
@@ -67,16 +72,26 @@ export function WorkShowcase({ activeSlug, onActiveSlugChange }: WorkShowcasePro
                   type="button"
                   role="tab"
                   aria-selected={active}
-                  className={`focus-ring relative min-h-11 shrink-0 rounded-lg px-4 text-sm font-semibold transition ${
-                    active ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'
+                  className={`focus-ring relative flex min-h-14 items-center justify-center gap-2 overflow-hidden rounded-lg border px-3 text-sm font-semibold transition ${
+                    active
+                      ? 'border-accent bg-accent text-bg shadow-[0_8px_24px_rgba(245,197,24,0.2)]'
+                      : 'border-border bg-surface/80 text-text-secondary hover:border-text-secondary hover:bg-surface-elevated hover:text-text-primary'
                   }`}
                   onClick={() => selectProject(project.slug)}
                 >
-                  {project.name}
+                  <span
+                    className={`font-mono text-[0.68rem] ${
+                      active ? 'text-bg/65' : 'text-text-secondary/60'
+                    }`}
+                    aria-hidden="true"
+                  >
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="truncate">{project.name}</span>
                   {active ? (
                     <motion.span
                       layoutId="work-showcase-active-tab"
-                      className="absolute inset-x-3 bottom-1 h-0.5 rounded-full bg-accent"
+                      className="absolute inset-x-4 bottom-1 h-0.5 rounded-full bg-bg/35"
                     />
                   ) : null}
                 </button>
@@ -86,8 +101,8 @@ export function WorkShowcase({ activeSlug, onActiveSlugChange }: WorkShowcasePro
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_20rem]">
-            <div>
+          <div className="mobile-showcase-layout mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_20rem]">
+            <div className="mobile-showcase-preview">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`${activeProject.slug}-${device}`}
@@ -111,7 +126,7 @@ export function WorkShowcase({ activeSlug, onActiveSlugChange }: WorkShowcasePro
               />
             </div>
 
-            <aside className="border-l border-border pl-6">
+            <aside className="mobile-project-summary border-l border-border pl-6">
               <p className="text-sm font-semibold uppercase text-accent">{activeProjectText.category}</p>
               <h3 className="mt-3 text-3xl font-semibold text-text-primary">{activeProject.name}</h3>
               <p className="mt-4 leading-8 text-text-secondary">{activeProjectText.shortDescription}</p>

@@ -16,7 +16,7 @@ export function FeaturedProject({ project }: FeaturedProjectProps) {
   const text = projectText(project)
 
   return (
-    <section className="section-padding">
+    <section className="mobile-featured-project section-padding">
       <div className="container-shell">
         <SectionHeading
           eyebrow={content.featured.eyebrow}

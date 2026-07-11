@@ -2,6 +2,15 @@ import type { ExperienceItem } from '../types'
 
 export const experience: ExperienceItem[] = [
   {
+    title: 'Web Systems Developer',
+    company: 'Madan Company',
+    date: '2023 - Present',
+    description:
+      'Currently developing and maintaining the company’s internal platforms and digital interfaces, including administration, HR, and investment systems, with a focus on user experience and performance.',
+    technologies: ['React', 'TypeScript', 'Firebase', 'Cloudflare'],
+    current: true,
+  },
+  {
     title: 'Web Developer',
     company: 'Software Company',
     date: '2022 - 2023',

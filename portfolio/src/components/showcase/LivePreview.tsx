@@ -9,7 +9,7 @@ interface LivePreviewProps {
 const previewViewport: Record<DeviceType, { width: number; height: number }> = {
   desktop: { width: 1440, height: 900 },
   tablet: { width: 820, height: 1180 },
-  mobile: { width: 390, height: 844 },
+  mobile: { width: 390, height: 720 },
 }
 
 export function LivePreview({ project, device }: LivePreviewProps) {
@@ -26,7 +26,7 @@ export function LivePreview({ project, device }: LivePreviewProps) {
 
     const updateScale = () => {
       const rect = container.getBoundingClientRect()
-      setScale(Math.min(rect.width / viewport.width, rect.height / viewport.height))
+      setScale(rect.width / viewport.width)
     }
 
     updateScale()
@@ -34,21 +34,21 @@ export function LivePreview({ project, device }: LivePreviewProps) {
     observer.observe(container)
 
     return () => observer.disconnect()
-  }, [viewport.height, viewport.width])
+  }, [viewport.width])
 
   return (
     <div ref={containerRef} className="relative h-full w-full overflow-hidden bg-bg">
       <iframe
         title={`${project.name} live preview`}
         src={project.liveUrl}
-        className="absolute left-1/2 top-1/2 border-0 bg-bg"
+        className="absolute left-0 top-0 border-0 bg-bg"
         loading="lazy"
         sandbox="allow-forms allow-popups allow-same-origin allow-scripts"
         style={{
           width: viewport.width,
           height: viewport.height,
-          transform: `translate(-50%, -50%) scale(${scale})`,
-          transformOrigin: 'center',
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
         }}
       />
     </div>

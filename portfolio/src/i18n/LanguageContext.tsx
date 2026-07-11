@@ -24,6 +24,7 @@ interface ExperienceText {
   date: string
   description: string
   technologies: string[]
+  current?: boolean
 }
 
 interface EducationText {
@@ -291,6 +292,15 @@ const content: Record<Language, LanguageContent> = {
       title: 'خبرة تقنية مدعومة بخبرة تشغيلية طويلة.',
       description: 'مسار عملي يشمل تطوير الويب، المحاسبة، الاستقبال، إدخال البيانات، وخدمة العملاء.',
       items: [
+        {
+          title: 'مطوّر أنظمة وواجهات ويب',
+          company: 'شركة معدن',
+          date: '2023 - حتى الآن',
+          description:
+            'أعمل حاليًا على تطوير وصيانة منصات الشركة الداخلية والواجهات الرقمية، بما يشمل أنظمة الإدارة والموارد البشرية والاستثمارات، مع تحسين تجربة المستخدم والأداء.',
+          technologies: ['React', 'TypeScript', 'Firebase', 'Cloudflare'],
+          current: true,
+        },
         {
           title: 'مطوّر ويب',
           company: 'شركة برمجيات',
@@ -621,6 +631,15 @@ const content: Record<Language, LanguageContent> = {
       title: 'Technical work backed by operational experience.',
       description: 'A timeline covering web development, accounting, hospitality reception, data entry, and customer service.',
       items: [
+        {
+          title: 'Web Systems Developer',
+          company: 'Madan Company',
+          date: '2023 - Present',
+          description:
+            'Currently developing and maintaining the company’s internal platforms and digital interfaces, including administration, HR, and investment systems, with a focus on user experience and performance.',
+          technologies: ['React', 'TypeScript', 'Firebase', 'Cloudflare'],
+          current: true,
+        },
         {
           title: 'Web Developer',
           company: 'Software Company',

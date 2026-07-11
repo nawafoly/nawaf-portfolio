@@ -9,7 +9,7 @@ export function EducationSection() {
   const educationItems = content.education.items.length ? content.education.items : education
 
   return (
-    <section className="section-padding">
+    <section className="mobile-education-section section-padding">
       <div className="container-shell grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
         <SectionHeading
           eyebrow={content.education.eyebrow}
@@ -20,7 +20,7 @@ export function EducationSection() {
         <div className="grid gap-4">
           {educationItems.map((item) => (
             <Reveal key={item.degree}>
-              <article className="panel p-6">
+              <article className="mobile-education-card panel p-6">
                 <div className="flex gap-4">
                   <div className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-border text-cool">
                     <GraduationCap aria-hidden="true" size={21} />

@@ -10,7 +10,7 @@ export function ServiceAccordion() {
   const { content } = useLanguage()
 
   return (
-    <section id="services" className="section-padding bg-surface/25">
+    <section id="services" className="mobile-services-section section-padding bg-surface/25">
       <div className="container-shell grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
           <SectionHeading

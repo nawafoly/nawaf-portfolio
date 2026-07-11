@@ -1,17 +1,31 @@
+import { useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Footer } from '../components/layout/Footer'
 import { Header } from '../components/layout/Header'
+import { MobileAppNav } from '../components/layout/MobileAppNav'
 import { PageTransition } from '../components/ui/PageTransition'
 
 export function MainLayout() {
   const location = useLocation()
 
+  useEffect(() => {
+    if (location.hash) {
+      const id = decodeURIComponent(location.hash.slice(1))
+      window.requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+      return
+    }
+
+    window.scrollTo({ top: 0, behavior: 'auto' })
+  }, [location.hash, location.pathname])
+
   return (
     <>
       <a
         href="#main-content"
-        className="focus-ring sr-only fixed left-4 top-4 z-[60] rounded-lg bg-accent px-4 py-3 text-sm font-semibold text-bg focus:not-sr-only"
+        className="focus-ring sr-only fixed left-4 top-4 z-[80] rounded-lg bg-accent px-4 py-3 text-sm font-semibold text-bg focus:not-sr-only"
       >
         Skip to main content
       </a>
@@ -24,6 +38,7 @@ export function MainLayout() {
         </AnimatePresence>
       </main>
       <Footer />
+      <MobileAppNav />
     </>
   )
 }

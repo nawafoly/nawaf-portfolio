@@ -27,8 +27,8 @@ export function ShowcaseControls({
   const { content } = useLanguage()
 
   return (
-    <div className="mt-6 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-      <div className="flex flex-wrap gap-2" aria-label={content.showcase.deviceControls}>
+    <div className="mobile-showcase-controls mt-6 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+      <div className="showcase-device-controls flex flex-wrap gap-2" aria-label={content.showcase.deviceControls}>
         {deviceOptions.map((option) => {
           const Icon = option.icon
           const active = option.value === device
@@ -53,7 +53,7 @@ export function ShowcaseControls({
         })}
       </div>
 
-      <div className="flex gap-2">
+      <div className="showcase-project-arrows flex gap-2" dir="ltr">
         <button
           type="button"
           className="focus-ring inline-flex size-10 items-center justify-center rounded-lg border border-border bg-surface text-text-primary transition hover:border-accent hover:text-accent"

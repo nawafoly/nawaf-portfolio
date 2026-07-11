@@ -10,10 +10,10 @@ export function ContactCTA() {
   const { content } = useLanguage()
 
   return (
-    <section id="contact" className="section-padding">
+    <section id="contact" className="mobile-contact-section section-padding">
       <div className="container-shell">
         <Reveal>
-          <div className="rounded-lg border border-accent/30 bg-[linear-gradient(135deg,rgba(245,197,24,0.18),rgba(20,20,20,0.9)_42%,rgba(121,215,200,0.1))] p-6 sm:p-10 lg:p-12">
+          <div className="mobile-contact-card rounded-lg border border-accent/30 bg-[linear-gradient(135deg,rgba(245,197,24,0.18),rgba(20,20,20,0.9)_42%,rgba(121,215,200,0.1))] p-6 sm:p-10 lg:p-12">
             <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
               <div>
                 <p className="text-sm font-semibold uppercase text-accent">{content.contactCta.eyebrow}</p>
@@ -25,7 +25,7 @@ export function ContactCTA() {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+              <div className="mobile-contact-actions flex flex-col gap-3 sm:flex-row lg:justify-end">
                 <PrimaryButton href={`mailto:${profile.email}`} icon={Mail}>
                   {content.contactCta.email}
                 </PrimaryButton>

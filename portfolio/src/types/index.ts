@@ -79,6 +79,7 @@ export interface ExperienceItem {
   date: string
   description: string
   technologies: string[]
+  current?: boolean
 }
 
 export interface EducationItem {

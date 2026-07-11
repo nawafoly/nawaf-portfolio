@@ -10,7 +10,7 @@ export function FAQAccordion() {
   const faqItems = content.faq.items
 
   return (
-    <section className="section-padding">
+    <section className="mobile-faq-section section-padding">
       <div className="container-shell grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
         <SectionHeading
           eyebrow={content.faq.eyebrow}
