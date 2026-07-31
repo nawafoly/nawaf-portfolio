@@ -10,12 +10,19 @@ const ProjectCaseStudyPage = lazy(() =>
   })),
 )
 
+const MalikatLandingPage = lazy(() =>
+  import('./pages/MalikatLandingPage').then((module) => ({
+    default: module.MalikatLandingPage,
+  })),
+)
+
 function App() {
   return (
     <LanguageProvider>
       <BrowserRouter>
         <Suspense fallback={<div className="min-h-screen bg-bg" />}>
           <Routes>
+            <Route path="/malikat" element={<MalikatLandingPage />} />
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/projects/:slug" element={<ProjectCaseStudyPage />} />
