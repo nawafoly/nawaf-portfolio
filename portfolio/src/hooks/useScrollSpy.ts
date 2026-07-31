@@ -14,25 +14,51 @@ export function useScrollSpy(ids: string[]): string {
       return undefined
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0]
+    let frameId = 0
 
-        if (visibleEntry?.target.id) {
-          setActiveId(visibleEntry.target.id)
+    const updateActiveSection = () => {
+      frameId = 0
+
+      const activationLine = Math.min(150, Math.max(88, window.innerHeight * 0.22))
+      const nearPageBottom =
+        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8
+
+      let nextActiveId = targets[0].id
+
+      if (nearPageBottom) {
+        nextActiveId = targets[targets.length - 1].id
+      } else {
+        for (const target of targets) {
+          if (target.getBoundingClientRect().top <= activationLine) {
+            nextActiveId = target.id
+          } else {
+            break
+          }
         }
-      },
-      {
-        rootMargin: '-22% 0px -55% 0px',
-        threshold: [0.16, 0.35, 0.6],
-      },
-    )
+      }
 
-    targets.forEach((target) => observer.observe(target))
+      setActiveId((currentId) => (currentId === nextActiveId ? currentId : nextActiveId))
+    }
 
-    return () => observer.disconnect()
+    const scheduleUpdate = () => {
+      if (frameId) return
+      frameId = window.requestAnimationFrame(updateActiveSection)
+    }
+
+    scheduleUpdate()
+    window.addEventListener('scroll', scheduleUpdate, { passive: true })
+    window.addEventListener('resize', scheduleUpdate)
+    window.addEventListener('hashchange', scheduleUpdate)
+
+    return () => {
+      window.removeEventListener('scroll', scheduleUpdate)
+      window.removeEventListener('resize', scheduleUpdate)
+      window.removeEventListener('hashchange', scheduleUpdate)
+
+      if (frameId) {
+        window.cancelAnimationFrame(frameId)
+      }
+    }
   }, [observedIds])
 
   return activeId
