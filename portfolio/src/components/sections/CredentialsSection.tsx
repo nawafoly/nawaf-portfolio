@@ -4,8 +4,19 @@ import { useLanguage } from '../../i18n/LanguageContext'
 import { Reveal } from '../ui/Reveal'
 import { SectionHeading } from '../ui/SectionHeading'
 
+const arabicCertificateOverrides: Record<string, { title?: string; issuer?: string }> = {
+  'microsoft-excel': {
+    title: 'أخصائي معتمد في Microsoft Office - Excel 2019',
+    issuer: 'مايكروسوفت',
+  },
+  interparfums: {
+    title: 'أخصائي معتمد في علامات إنتر بارفامز',
+    issuer: 'إنتر بارفامز',
+  },
+}
+
 export function CredentialsSection() {
-  const { content, certificateText } = useLanguage()
+  const { content, certificateText, language } = useLanguage()
 
   return (
     <section id="credentials" className="mobile-credentials-section section-padding bg-bg">
@@ -20,16 +31,22 @@ export function CredentialsSection() {
 
         <div className="mobile-credentials-grid mt-10 grid gap-5 lg:grid-cols-3">
           {featuredCertificates.map((certificate, index) => {
-            const text = certificateText(certificate)
+            const sourceText = certificateText(certificate)
+            const override = language === 'ar' ? arabicCertificateOverrides[certificate.id] : undefined
+            const text = {
+              ...sourceText,
+              title: override?.title ?? sourceText.title,
+              issuer: override?.issuer ?? sourceText.issuer,
+            }
 
             return (
               <Reveal key={certificate.id} delay={index * 0.06}>
-                <article className="mobile-certificate-card panel h-full overflow-hidden">
+                <article className="mobile-certificate-card interactive-card panel h-full overflow-hidden">
                   <a
                     href={certificate.image}
                     target="_blank"
                     rel="noreferrer"
-                    className="focus-ring block border-b border-border bg-white"
+                    className="focus-ring interactive-press block border-b border-border bg-white"
                     aria-label={`${content.common.viewCertificate}: ${text.title}`}
                   >
                     <img
@@ -52,7 +69,7 @@ export function CredentialsSection() {
                       href={certificate.image}
                       target="_blank"
                       rel="noreferrer"
-                      className="focus-ring mt-5 inline-flex items-center gap-2 rounded-lg text-sm font-semibold text-accent"
+                      className="focus-ring interactive-press mt-5 inline-flex items-center gap-2 rounded-lg text-sm font-semibold text-accent"
                     >
                       {content.common.viewCertificate}
                       <ExternalLink aria-hidden="true" size={16} />
