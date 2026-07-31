@@ -1,4 +1,4 @@
-import { ArrowRight, Download, Mail, MapPin, Sparkles } from 'lucide-react'
+import { ArrowRight, Download, MapPin, Phone, Sparkles } from 'lucide-react'
 import { profile } from '../../data/profile'
 import { useLanguage } from '../../i18n/LanguageContext'
 import { PrimaryButton } from '../ui/PrimaryButton'
@@ -6,7 +6,8 @@ import { Reveal } from '../ui/Reveal'
 import { SecondaryButton } from '../ui/SecondaryButton'
 
 export function HeroSection() {
-  const { content } = useLanguage()
+  const { content, language } = useLanguage()
+  const phoneLabel = language === 'ar' ? 'الجوال' : 'Call'
 
   return (
     <section id="home" className="mobile-app-hero min-h-screen pt-28 sm:pt-32">
@@ -19,8 +20,8 @@ export function HeroSection() {
             </div>
 
             <h1 className="max-w-4xl text-5xl font-semibold leading-[1.02] text-text-primary sm:text-6xl lg:text-7xl">
-                {profile.name}
-                <span className="mt-4 block text-3xl text-text-secondary sm:text-4xl lg:text-5xl">
+              {profile.name}
+              <span className="mt-4 block text-3xl text-text-secondary sm:text-4xl lg:text-5xl">
                 {content.hero.title}
               </span>
             </h1>
@@ -41,8 +42,8 @@ export function HeroSection() {
               <PrimaryButton href="#work-showcase" icon={ArrowRight}>
                 {content.common.viewWork}
               </PrimaryButton>
-              <SecondaryButton href={`mailto:${profile.email}`} icon={Mail}>
-                {content.common.contact}
+              <SecondaryButton href={`tel:${profile.phone}`} icon={Phone}>
+                {phoneLabel}
               </SecondaryButton>
               <SecondaryButton href={profile.resumeUrl} icon={Download} target="_blank">
                 {content.common.downloadCv}
