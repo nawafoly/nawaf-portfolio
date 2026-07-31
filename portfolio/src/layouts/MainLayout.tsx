@@ -5,9 +5,11 @@ import { Footer } from '../components/layout/Footer'
 import { Header } from '../components/layout/Header'
 import { MobileAppNav } from '../components/layout/MobileAppNav'
 import { PageTransition } from '../components/ui/PageTransition'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export function MainLayout() {
   const location = useLocation()
+  const { language } = useLanguage()
 
   useEffect(() => {
     if (location.hash) {
@@ -27,7 +29,7 @@ export function MainLayout() {
         href="#main-content"
         className="focus-ring sr-only fixed left-4 top-4 z-[80] rounded-lg bg-accent px-4 py-3 text-sm font-semibold text-bg focus:not-sr-only"
       >
-        Skip to main content
+        {language === 'ar' ? 'الانتقال إلى المحتوى الرئيسي' : 'Skip to main content'}
       </a>
       <Header />
       <main id="main-content">
