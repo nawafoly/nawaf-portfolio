@@ -1,0 +1,9 @@
+.malikat-page .malikat-button--primary,
+.malikat-page .malikat-button--small {
+  color: #fffdfb;
+}
+
+.malikat-page .malikat-button--primary svg,
+.malikat-page .malikat-button--small svg {
+  color: currentColor;
+}
