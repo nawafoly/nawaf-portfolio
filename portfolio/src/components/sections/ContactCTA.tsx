@@ -1,4 +1,4 @@
-import { ArrowRight, ExternalLink, Mail, Phone } from 'lucide-react'
+import { ExternalLink, Mail, MessageCircle, Phone } from 'lucide-react'
 import { profile } from '../../data/profile'
 import { useLanguage } from '../../i18n/LanguageContext'
 import { PrimaryButton } from '../ui/PrimaryButton'
@@ -7,7 +7,9 @@ import { SecondaryButton } from '../ui/SecondaryButton'
 
 export function ContactCTA() {
   const cursorProfile = profile.social.find((item) => item.label === 'Cursor')
-  const { content } = useLanguage()
+  const { content, language } = useLanguage()
+  const whatsappNumber = profile.phone.replace(/\D/g, '')
+  const whatsappLabel = language === 'ar' ? 'واتساب' : 'WhatsApp'
 
   return (
     <section id="contact" className="mobile-contact-section section-padding">
@@ -32,8 +34,12 @@ export function ContactCTA() {
                 <SecondaryButton href={`tel:${profile.phone}`} icon={Phone}>
                   {content.contactCta.call}
                 </SecondaryButton>
-                <SecondaryButton href="#work-showcase" icon={ArrowRight}>
-                  {content.contactCta.reviewWork}
+                <SecondaryButton
+                  href={`https://wa.me/${whatsappNumber}`}
+                  icon={MessageCircle}
+                  target="_blank"
+                >
+                  {whatsappLabel}
                 </SecondaryButton>
                 <SecondaryButton href={cursorProfile?.href ?? '#'} icon={ExternalLink} target="_blank">
                   {content.contactCta.cursor}
