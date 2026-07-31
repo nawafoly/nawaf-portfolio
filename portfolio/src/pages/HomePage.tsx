@@ -7,6 +7,7 @@ import { ExperienceTimeline } from '../components/sections/ExperienceTimeline'
 import { FAQAccordion } from '../components/sections/FAQAccordion'
 import { FeaturedProject } from '../components/sections/FeaturedProject'
 import { HeroSection } from '../components/sections/HeroSection'
+import { MalikatPromoSection } from '../components/sections/MalikatPromoSection'
 import { ServiceAccordion } from '../components/sections/ServiceAccordion'
 import { StatsSection } from '../components/sections/StatsSection'
 import { TeamContributionsSection } from '../components/sections/TeamContributionsSection'
@@ -29,6 +30,7 @@ export function HomePage() {
     <>
       <HeroSection />
       <StatsSection />
+      <MalikatPromoSection />
       <WorkShowcase activeSlug={activeProject.slug} onActiveSlugChange={setActiveProjectSlug} />
       <CredentialsSection />
       <FeaturedProject project={activeProject} />
