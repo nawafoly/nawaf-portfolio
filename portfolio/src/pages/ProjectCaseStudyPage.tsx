@@ -2,11 +2,12 @@ import type { ReactNode } from 'react'
 import { useEffect } from 'react'
 import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Check, Layers, UserRound } from 'lucide-react'
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { getProjectBySlug } from '../data/projects'
-import { useLanguage } from '../i18n/LanguageContext'
 import { DeviceFrame } from '../components/showcase/DeviceFrame'
 import { ImagePlaceholder } from '../components/ui/ImagePlaceholder'
 import { Reveal } from '../components/ui/Reveal'
+import { getLocalizedCaseStudy } from '../data/projectCaseStudies.ar'
+import { getProjectBySlug } from '../data/projects'
+import { useLanguage } from '../i18n/LanguageContext'
 
 interface CaseSectionProps {
   eyebrow: string
@@ -42,7 +43,7 @@ function BulletList({ items }: { items: string[] }) {
 export function ProjectCaseStudyPage() {
   const { slug } = useParams()
   const project = slug ? getProjectBySlug(slug) : undefined
-  const { content, projectText } = useLanguage()
+  const { content, projectText, language } = useLanguage()
 
   useEffect(() => {
     if (project) {
@@ -55,19 +56,23 @@ export function ProjectCaseStudyPage() {
   }
 
   const text = projectText(project)
-  const nextProject = project.caseStudy.nextProjectSlug
-    ? getProjectBySlug(project.caseStudy.nextProjectSlug)
+  const caseStudy = getLocalizedCaseStudy(project, language)
+  const nextProject = caseStudy.nextProjectSlug
+    ? getProjectBySlug(caseStudy.nextProjectSlug)
     : undefined
   const nextProjectText = nextProject ? projectText(nextProject) : undefined
+  const BackArrow = language === 'ar' ? ArrowRight : ArrowLeft
+  const NextArrow = language === 'ar' ? ArrowLeft : ArrowRight
+  const architectureLabel = language === 'ar' ? 'مخطط بنية النظام' : 'Architecture diagram placeholder'
 
   return (
     <article className="case-study-page pt-28">
       <div className="container-shell pb-20">
         <Link
           to="/"
-          className="focus-ring inline-flex items-center gap-2 rounded-lg text-sm font-semibold text-text-secondary transition hover:text-accent"
+          className="focus-ring interactive-press inline-flex items-center gap-2 rounded-lg text-sm font-semibold text-text-secondary transition hover:text-accent"
         >
-          <ArrowLeft aria-hidden="true" size={17} />
+          <BackArrow aria-hidden="true" size={17} />
           {content.caseStudyPage.back}
         </Link>
 
@@ -94,7 +99,7 @@ export function ProjectCaseStudyPage() {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="chip focus-ring text-accent"
+                className="chip focus-ring interactive-press text-accent"
               >
                 {content.common.liveSite}
                 <ArrowUpRight aria-hidden="true" size={14} />
@@ -126,27 +131,27 @@ export function ProjectCaseStudyPage() {
           </CaseSection>
 
           <CaseSection eyebrow={content.caseStudyPage.overviewEyebrow} title={content.caseStudyPage.overviewTitle}>
-            <p>{project.caseStudy.overview}</p>
+            <p>{caseStudy.overview}</p>
           </CaseSection>
 
           <CaseSection eyebrow={content.caseStudyPage.problemEyebrow} title={content.caseStudyPage.problemTitle}>
-            <p>{project.caseStudy.problem}</p>
+            <p>{caseStudy.problem}</p>
           </CaseSection>
 
           <CaseSection eyebrow={content.caseStudyPage.goalsEyebrow} title={content.caseStudyPage.goalsTitle}>
-            <BulletList items={project.caseStudy.goals} />
+            <BulletList items={caseStudy.goals} />
           </CaseSection>
 
           <CaseSection eyebrow={content.caseStudyPage.roleEyebrow} title={content.caseStudyPage.roleTitle}>
             <div className="flex gap-4">
               <UserRound aria-hidden="true" size={22} className="mt-1 shrink-0 text-cool" />
-              <p>{project.caseStudy.role}</p>
+              <p>{caseStudy.role}</p>
             </div>
           </CaseSection>
 
           <CaseSection eyebrow={content.caseStudyPage.stackEyebrow} title={content.caseStudyPage.stackTitle}>
             <div className="flex flex-wrap gap-2">
-              {project.caseStudy.stack.map((tech) => (
+              {caseStudy.stack.map((tech) => (
                 <span key={tech} className="chip">
                   {tech}
                 </span>
@@ -161,26 +166,26 @@ export function ProjectCaseStudyPage() {
             <div className="grid gap-5 lg:grid-cols-[1fr_0.85fr]">
               <div className="flex gap-4">
                 <Layers aria-hidden="true" size={22} className="mt-1 shrink-0 text-plum" />
-                <p>{project.caseStudy.architecture}</p>
+                <p>{caseStudy.architecture}</p>
               </div>
-              <ImagePlaceholder aspect="4/3" label="Architecture diagram placeholder" />
+              <ImagePlaceholder aspect="4/3" label={architectureLabel} />
             </div>
           </CaseSection>
 
           <CaseSection eyebrow={content.caseStudyPage.featuresEyebrow} title={content.caseStudyPage.featuresTitle}>
-            <BulletList items={project.caseStudy.features} />
+            <BulletList items={caseStudy.features} />
           </CaseSection>
 
           <CaseSection eyebrow={content.caseStudyPage.designEyebrow} title={content.caseStudyPage.designTitle}>
-            <p>{project.caseStudy.designProcess}</p>
+            <p>{caseStudy.designProcess}</p>
           </CaseSection>
 
           <CaseSection eyebrow={content.caseStudyPage.challengesEyebrow} title={content.caseStudyPage.challengesTitle}>
-            <BulletList items={project.caseStudy.challenges} />
+            <BulletList items={caseStudy.challenges} />
           </CaseSection>
 
           <CaseSection eyebrow={content.caseStudyPage.solutionsEyebrow} title={content.caseStudyPage.solutionsTitle}>
-            <BulletList items={project.caseStudy.solutions} />
+            <BulletList items={caseStudy.solutions} />
           </CaseSection>
 
           <CaseSection eyebrow={content.caseStudyPage.galleryEyebrow} title={content.caseStudyPage.galleryTitle}>
@@ -188,7 +193,7 @@ export function ProjectCaseStudyPage() {
               <DeviceFrame device="desktop" title={project.name}>
                 <img
                   src={project.media.desktop}
-                  alt={`${project.name} desktop view`}
+                  alt={`${project.name} ${content.common.desktop}`}
                   className="h-full w-full object-cover object-top"
                   loading="lazy"
                 />
@@ -197,7 +202,7 @@ export function ProjectCaseStudyPage() {
                 <DeviceFrame device="tablet" title={project.name}>
                   <img
                     src={project.media.tablet}
-                    alt={`${project.name} tablet view`}
+                    alt={`${project.name} ${content.common.tablet}`}
                     className="h-full w-full object-cover object-top"
                     loading="lazy"
                   />
@@ -205,7 +210,7 @@ export function ProjectCaseStudyPage() {
                 <DeviceFrame device="mobile" title={project.name}>
                   <img
                     src={project.media.mobile}
-                    alt={`${project.name} mobile view`}
+                    alt={`${project.name} ${content.common.mobile}`}
                     className="h-full w-full object-cover object-top"
                     loading="lazy"
                   />
@@ -215,11 +220,11 @@ export function ProjectCaseStudyPage() {
           </CaseSection>
 
           <CaseSection eyebrow={content.caseStudyPage.resultsEyebrow} title={content.caseStudyPage.resultsTitle}>
-            <BulletList items={project.caseStudy.results} />
+            <BulletList items={caseStudy.results} />
           </CaseSection>
 
           <CaseSection eyebrow={content.caseStudyPage.lessonsEyebrow} title={content.caseStudyPage.lessonsTitle}>
-            <BulletList items={project.caseStudy.lessons} />
+            <BulletList items={caseStudy.lessons} />
           </CaseSection>
 
           {nextProject ? (
@@ -234,10 +239,10 @@ export function ProjectCaseStudyPage() {
                 </p>
                 <Link
                   to={`/projects/${nextProject.slug}`}
-                  className="focus-ring mt-6 inline-flex items-center gap-2 rounded-lg text-sm font-semibold text-accent"
+                  className="focus-ring interactive-press mt-6 inline-flex items-center gap-2 rounded-lg text-sm font-semibold text-accent"
                 >
                   <span>{content.caseStudyPage.openNext}</span>
-                  <ArrowRight aria-hidden="true" size={17} />
+                  <NextArrow aria-hidden="true" size={17} />
                 </Link>
               </section>
             </Reveal>
