@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { LanguageProvider } from './i18n/LanguageContext'
 import { MainLayout } from './layouts/MainLayout'
 import { HomePage } from './pages/HomePage'
+import './styles/MalikatOverrides.css'
 
 const ProjectCaseStudyPage = lazy(() =>
   import('./pages/ProjectCaseStudyPage').then((module) => ({
