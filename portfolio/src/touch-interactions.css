@@ -1,0 +1,72 @@
+/* Consistent interaction feedback for mouse, keyboard, and touch. */
+.interactive-card,
+.interactive-press,
+.mobile-app-bottom-nav__item,
+.mobile-more-sheet__link {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.interactive-card {
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.interactive-press {
+  transition:
+    transform 140ms ease,
+    color 140ms ease,
+    background-color 140ms ease,
+    border-color 140ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .interactive-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(245, 197, 24, 0.58);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.3);
+  }
+
+  .interactive-card:hover .mobile-team-card__open {
+    border-color: rgba(245, 197, 24, 0.7);
+    color: #f5c518;
+    transform: translate(2px, -2px);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .interactive-card:active {
+    transform: scale(0.975);
+    border-color: rgba(245, 197, 24, 0.72);
+    background: rgba(245, 197, 24, 0.08);
+  }
+
+  .interactive-card:active .mobile-team-card__open {
+    border-color: #f5c518;
+    background: rgba(245, 197, 24, 0.14);
+    color: #f5c518;
+  }
+
+  .interactive-press:active,
+  .mobile-more-sheet__link:active {
+    transform: scale(0.96);
+    background: rgba(245, 197, 24, 0.12);
+    color: #f5c518;
+  }
+
+  .mobile-app-bottom-nav__item:active {
+    transform: scale(0.92);
+    background: rgba(245, 197, 24, 0.16);
+    color: #f5c518;
+  }
+}
+
+.interactive-card:focus-visible,
+.interactive-press:focus-visible,
+.mobile-app-bottom-nav__item:focus-visible,
+.mobile-more-sheet__link:focus-visible {
+  box-shadow: 0 0 0 2px #0a0a0a, 0 0 0 4px #f5c518;
+}
