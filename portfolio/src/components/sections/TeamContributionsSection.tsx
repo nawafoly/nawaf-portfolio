@@ -5,23 +5,27 @@ import { SectionHeading } from '../ui/SectionHeading'
 
 const teamSites = [
   {
-    name: 'Red Sea Global',
+    nameAr: 'البحر الأحمر الدولية',
+    nameEn: 'Red Sea Global',
     url: 'https://www.redseaglobal.com/ar/',
     domain: 'redseaglobal.com',
   },
   {
-    name: 'Visit Red Sea',
+    nameAr: 'زوروا البحر الأحمر',
+    nameEn: 'Visit Red Sea',
     url: 'https://www.visitredsea.com/ar',
     domain: 'visitredsea.com',
   },
   {
-    name: 'Masar Destination',
-    url: 'https://www.masardestination.com.sa/en',
+    nameAr: 'وجهة مسار',
+    nameEn: 'Masar Destination',
+    url: 'https://www.masardestination.com.sa/',
     domain: 'masardestination.com.sa',
   },
   {
-    name: 'Midwam News',
-    url: 'https://midwam.com/en/news',
+    nameAr: 'أخبار مدوام',
+    nameEn: 'Midwam News',
+    url: 'https://midwam.com/news',
     domain: 'midwam.com',
   },
 ]
@@ -61,31 +65,38 @@ export function TeamContributionsSection() {
         </Reveal>
 
         <div className="mobile-team-grid mt-10 grid gap-4 md:grid-cols-2">
-          {teamSites.map((site, index) => (
-            <Reveal key={site.url} delay={index * 0.05}>
-              <article className="mobile-team-card panel h-full p-5 transition hover:border-accent/60">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-                      <UsersRound aria-hidden="true" size={15} />
-                      {text.badge}
+          {teamSites.map((site, index) => {
+            const siteName = language === 'ar' ? site.nameAr : site.nameEn
+
+            return (
+              <Reveal key={site.url} delay={index * 0.05}>
+                <a
+                  href={site.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mobile-team-card interactive-card focus-ring panel block h-full p-5 transition hover:border-accent/60"
+                  aria-label={`${text.open}: ${siteName}`}
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+                        <UsersRound aria-hidden="true" size={15} />
+                        {text.badge}
+                      </div>
+                      <h3 className="text-2xl font-semibold text-text-primary">{siteName}</h3>
+                      <p className="mt-2 text-sm text-text-secondary" dir="ltr">{site.domain}</p>
                     </div>
-                    <h3 className="text-2xl font-semibold text-text-primary">{site.name}</h3>
-                    <p className="mt-2 text-sm text-text-secondary">{site.domain}</p>
+                    <span
+                      className="mobile-team-card__open inline-flex size-10 shrink-0 items-center justify-center rounded-lg border border-border text-text-primary transition"
+                      aria-hidden="true"
+                    >
+                      <ArrowUpRight size={18} />
+                    </span>
                   </div>
-                  <a
-                    href={site.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="focus-ring inline-flex size-10 shrink-0 items-center justify-center rounded-lg border border-border text-text-primary transition hover:border-accent hover:text-accent"
-                    aria-label={`${text.open}: ${site.name}`}
-                  >
-                    <ArrowUpRight aria-hidden="true" size={18} />
-                  </a>
-                </div>
-              </article>
-            </Reveal>
-          ))}
+                </a>
+              </Reveal>
+            )
+          })}
         </div>
       </div>
     </section>
