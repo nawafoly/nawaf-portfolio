@@ -10,7 +10,6 @@ import {
   Clock,
   FileText,
   Fingerprint,
-  Gift,
   Headphones,
   Layers,
   Lock,
