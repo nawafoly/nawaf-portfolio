@@ -11,7 +11,7 @@ const ProjectCaseStudyPage = lazy(() =>
   })),
 )
 
-const MalikatLandingPage = lazy(() =>
+const SalonLandingPage = lazy(() =>
   import('./pages/MalikatLandingPage').then((module) => ({
     default: module.MalikatLandingPage,
   })),
@@ -23,7 +23,8 @@ function App() {
       <BrowserRouter>
         <Suspense fallback={<div className="min-h-screen bg-bg" />}>
           <Routes>
-            <Route path="/malikat" element={<MalikatLandingPage />} />
+            <Route path="/salon" element={<SalonLandingPage />} />
+            <Route path="/malikat" element={<SalonLandingPage />} />
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/projects/:slug" element={<ProjectCaseStudyPage />} />
