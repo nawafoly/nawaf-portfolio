@@ -173,10 +173,6 @@ export function MalikatLandingPage() {
             </a>
           </nav>
 
-          <a href="#request-demo" className="malikat-button malikat-button--small malikat-header__cta">
-            أبغى أشوفه
-          </a>
-
           <button
             type="button"
             className="malikat-menu-button"
@@ -225,14 +221,6 @@ export function MalikatLandingPage() {
                 الحجوزات، العملاء، الفريق، الرواتب، المخزون، المصاريف والتقارير —
                 بدل ما تكون موزعة في أكثر من مكان، كلها تمشي مع بعض داخل نظام واحد.
               </p>
-
-              <div className="malikat-hero__actions">
-                <a href="#experience" className="malikat-button malikat-button--primary">
-                  شوفيه وهو شغال
-                  <ArrowUpRight aria-hidden="true" size={18} />
-                </a>
-                <a href="#request-demo" className="malikat-button malikat-button--ghost">خلّنا نتكلم</a>
-              </div>
 
               <div className="malikat-trust-row">
                 <span><ShieldCheck aria-hidden="true" size={16} /> كل منشأة ببيئتها الخاصة</span>
@@ -341,7 +329,7 @@ export function MalikatLandingPage() {
               <div>
                 <p className="malikat-section-label">المخزون</p>
                 <h2>مو مهم تعرفي «كم باقي» بس.</h2>
-                <p>الأهم تعرفي: ليه نقص؟ انصرف لمين؟ دخل من أي شراء؟ وأي خدمة استهلكته؟</p>
+                <p style={{ color: 'rgba(255, 255, 255, 0.9)' }}>الأهم تعرفي: ليه نقص؟ انصرف لمين؟ دخل من أي شراء؟ وأي خدمة استهلكته؟</p>
               </div>
             </div>
 
@@ -480,10 +468,10 @@ export function MalikatLandingPage() {
                 </select>
               </label>
               <button type="submit" className="malikat-button malikat-button--primary malikat-request-form__submit">
-                افتح واتساب
+                تواصل معي على واتساب
                 <ArrowUpRight aria-hidden="true" size={18} />
               </button>
-              <small>البيانات ما تنحفظ في الموقع؛ فقط نجهز منها رسالة واتساب.</small>
+              <small>البيانات ما تنحفظ في الموقع؛ فقط نجهز منها رسالة واتساب تفتح مباشرة على محادثتي.</small>
             </form>
           </div>
         </section>
@@ -503,8 +491,6 @@ export function MalikatLandingPage() {
           </div>
         </div>
       </footer>
-
-      <a href="#request-demo" className="malikat-mobile-cta">أبغى أشوفه <ArrowUpRight aria-hidden="true" size={17} /></a>
     </div>
   )
 }
