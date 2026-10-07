@@ -3,11 +3,11 @@ import {
   ArrowLeft,
   ArrowUpRight,
   BarChart3,
+  Boxes,
   Building2,
   CalendarCheck,
   Check,
   Clock,
-  Crown,
   FileText,
   Fingerprint,
   Gift,
@@ -19,6 +19,7 @@ import {
   Package,
   Receipt,
   ShieldCheck,
+  ShoppingCart,
   Sparkles,
   Store,
   Users,
@@ -31,28 +32,28 @@ import './MalikatLandingPage.css'
 const whatsappNumber = '966546535404'
 
 const platformStats = [
-  { value: 'منصة واحدة', label: 'لإدارة رحلة العميلة والتشغيل والإدارة' },
-  { value: '24/7', label: 'حجز إلكتروني متاح للعميلات طوال اليوم' },
-  { value: '4 واجهات', label: 'العميلة والإدارة والموظفة والشريكة' },
-  { value: 'صلاحيات دقيقة', label: 'وصول منظم لكل دور داخل المشغل' },
+  { value: 'نظام واحد', label: 'يربط العميلة والتشغيل والإدارة والموارد البشرية والمخزون' },
+  { value: '24/7', label: 'واجهة رقمية وحجز إلكتروني متاح للعميلات' },
+  { value: 'صلاحيات دقيقة', label: 'كل مستخدم يرى وينفذ ما يناسب دوره فقط' },
+  { value: 'قابل للتخصيص', label: 'الوحدات والسياسات تُهيأ حسب طريقة عمل المنشأة' },
 ]
 
 const painPoints = [
   {
-    title: 'تضارب المواعيد وضياع الحجوزات',
-    description: 'تتحول المواعيد من رسائل ومكالمات متفرقة إلى جدول واضح ومركزي يمكن متابعته لحظة بلحظة.',
+    title: 'الحجوزات موزعة بين الرسائل والذاكرة',
+    description: 'ينتقل الحجز إلى جدول مركزي مرتبط بالعميلة والخدمة والموظفة والسعر وحالة التنفيذ بدل الاعتماد على المحادثات المتفرقة.',
   },
   {
-    title: 'غياب الصورة المالية الحقيقية',
-    description: 'تتبع الإيرادات والمصروفات والمدفوعات والتقارير بدل الاعتماد على التقدير والدفاتر المتفرقة.',
+    title: 'ملفات الموظفات والدوام والرواتب منفصلة',
+    description: 'يجمع النظام الملف الوظيفي والشفتات والحضور والإجازات والطلبات والرواتب في دورة موارد بشرية واحدة.',
   },
   {
-    title: 'صعوبة متابعة الموظفات',
-    description: 'ملفات وظيفية وحضور وانصراف ورواتب وعمولات وصلاحيات في منظومة تشغيل واحدة.',
+    title: 'المخزون رقم فقط بلا تفسير للحركة',
+    description: 'يتحول المخزون إلى دورة تشغيل: مواد وأرصدة واستهلاك خدمات وصرف موظفات وهدر وجرد وموردون وأوامر شراء.',
   },
   {
-    title: 'تجربة عميلة غير مترابطة',
-    description: 'من اكتشاف الخدمة والعرض إلى الحجز والدفع ومتابعة الباقات والجلسات في تجربة رقمية متسقة.',
+    title: 'صاحبة المنشأة تحتاج تسأل حتى تعرف ماذا حدث',
+    description: 'التقارير وسجل العمليات والصلاحيات تجعل النظام نفسه مرجعًا للتشغيل بدل الاعتماد على نقل المعلومة شفهيًا.',
   },
 ]
 
@@ -60,148 +61,238 @@ const featureGroups = [
   {
     icon: CalendarCheck,
     title: 'الحجوزات والاستقبال',
-    description: 'إدارة حجوزات اليوم، اختيار الخدمات والموظفات، منع التعارض، إعادة الجدولة ومتابعة حالة كل حجز.',
-    items: ['جدول حجوزات مركزي', 'توزيع الخدمات على الموظفات', 'طابور وانتظار وتشغيل يومي'],
+    description: 'إدارة الحجز من لحظة تسجيل العميلة حتى إغلاق العملية، مع الخدمات والموظفات والأوقات والأسعار وحالة كل حجز.',
+    items: ['جدول حجوزات مركزي', 'منع التعارض وتنظيم المواعيد', 'تعديل سعر البند بصلاحية وسبب واضح'],
   },
   {
     icon: Users,
     title: 'إدارة العميلات CRM',
-    description: 'ملف موحد لكل عميلة يجمع بياناتها وحجوزاتها ومدفوعاتها وباقاتها وملاحظات فريق العمل.',
-    items: ['سجل كامل للعميلة', 'تاريخ الخدمات والمدفوعات', 'بيانات منظمة دون تكرار'],
+    description: 'ملف موحد لكل عميلة بدل أن تكون مجرد رقم في الواتساب، مع تاريخ تعاملها مع المنشأة.',
+    items: ['الحجوزات السابقة والقادمة', 'الخدمات وآخر زيارة', 'بيانات موحدة تقلل التكرار والضياع'],
   },
   {
     icon: Store,
-    title: 'الخدمات والأسعار',
-    description: 'بناء كتالوج الخدمات والأقسام والأسعار والمدد والموظفات المؤهلات لتقديم كل خدمة.',
-    items: ['أقسام وخدمات مرنة', 'أسعار ومدد وخيارات', 'تحكم في الظهور والتوفر'],
-  },
-  {
-    icon: Gift,
-    title: 'العروض والباقات والولاء',
-    description: 'إنشاء عروض وكوبونات وباقات جلسات تساعد المشغل على زيادة التكرار والاحتفاظ بالعميلات.',
-    items: ['خصم ثابت أو نسبي', 'أكواد كوبونات وشروط', 'باقات وجلسات متبقية'],
+    title: 'الخدمات والأسعار والعروض',
+    description: 'كتالوج خدمات منظم يربط الخدمة بسعرها ومدتها والموظفات المؤهلات لها، مع أسعار عروض محددة بفترة زمنية.',
+    items: ['أقسام وخدمات مرنة', 'ربط الخدمة بالموظفات', 'سعر عرض بتاريخ بداية ونهاية دون تغيير السعر الأساسي'],
   },
   {
     icon: Fingerprint,
-    title: 'الموظفات والحضور',
-    description: 'ملفات وظيفية وجداول عمل وحضور وانصراف مرتبط بالموقع الجغرافي وسجل تشغيلي واضح.',
-    items: ['تطبيق خاص بالموظفات', 'بصمة جغرافية', 'تأخير وغياب وإجازات'],
+    title: 'الموارد البشرية والحضور',
+    description: 'منظومة HR داخل نفس نظام التشغيل تشمل ملف الموظفة وجدولها وحضورها وإجازاتها وطلباتها ومستنداتها.',
+    items: ['شفتات وحضور وانصراف', 'تأخير وخروج مبكر ونقص ساعات وغياب', 'إجازات وطلبات وملفات وظيفية'],
   },
   {
     icon: Wallet,
-    title: 'الرواتب والعمولات',
-    description: 'احتساب دورة الراتب وفق الفترة المعتمدة مع الخصومات والبدلات والسلف والعمولات والتقارير.',
-    items: ['فترات رواتب مرنة', 'خصومات وبدلات منفصلة', 'تقارير Excel وPDF'],
+    title: 'الرواتب Payroll',
+    description: 'دورة رواتب تربط البيانات الوظيفية والحضور مع المكونات المالية بدل بناء الراتب يدويًا كل شهر.',
+    items: ['بدلات ومكافآت وعمولات وسلف وتسويات', 'تأثير الحضور والإجازات حسب السياسة', 'مراجعة واعتماد وسجل للفترة'],
+  },
+  {
+    icon: Boxes,
+    title: 'المخزون والاستهلاك',
+    description: 'مركز رقابة للمواد المستخدمة داخل الخدمات، مع رصيد حقيقي وحركات موثقة بدل تعديل الكمية مباشرة بلا سبب.',
+    items: ['أرصدة حسب الموقع وحد إعادة الطلب', 'وصفات استهلاك مرتبطة بالخدمات', 'صرف موظفات وهدر وجرد وسجل حركات'],
+  },
+  {
+    icon: ShoppingCart,
+    title: 'الموردون والمشتريات',
+    description: 'تنظيم دورة التوريد من المورد وأمر الشراء حتى استلام الكميات ودخولها للمخزون.',
+    items: ['سجل موردين', 'أوامر شراء', 'استلام مشتريات مرتبط بالمخزون'],
   },
   {
     icon: Receipt,
-    title: 'المدفوعات والتقارير',
-    description: 'ربط المدفوعات بالحجوزات ومتابعة الإيرادات والمصروفات والتدقيق اليومي من لوحة واحدة.',
-    items: ['دفع نقدي وإلكتروني', 'فواتير وسجل مالي', 'تقارير تشغيلية وإدارية'],
+    title: 'الإيرادات والمصروفات',
+    description: 'متابعة مالية مرتبطة بالتشغيل حتى تعرف الإدارة مصدر المبلغ بدل الاعتماد على إجمالي غير مفسر.',
+    items: ['إيرادات مرتبطة بالحجوزات', 'مصروفات منظمة', 'تدقيق يومي وسجل مالي'],
+  },
+  {
+    icon: BarChart3,
+    title: 'التقارير والأداء',
+    description: 'تحويل البيانات اليومية إلى مؤشرات تساعد الإدارة على قراءة الأداء واتخاذ القرار.',
+    items: ['تقارير تشغيلية ومالية', 'أداء الموظفات والأهداف', 'رؤية أوضح للخدمات والعمليات'],
   },
   {
     icon: Lock,
     title: 'الحسابات والصلاحيات',
-    description: 'تحديد ما يستطيع المالك والمدير والموارد البشرية والمحاسب والموظفة الوصول إليه وتنفيذه.',
-    items: ['أدوار إدارية متعددة', 'ربط الحساب بالموظفة', 'سجل للتعديلات والعمليات'],
+    description: 'فصل واضح بين المالكة والإدارة والاستقبال والموارد البشرية والموظفة، مع صلاحيات حسب المسؤولية.',
+    items: ['أدوار وصلاحيات تفصيلية', 'ربط الحساب بالموظفة', 'سجل للتعديلات والعمليات الحساسة'],
   },
   {
     icon: MonitorSmartphone,
-    title: 'موقع وتطبيقات متكاملة',
-    description: 'واجهة للعميلات وموقع متجاوب وتطبيقات تشغيلية تجعل تجربة المشغل متصلة على الجوال والكمبيوتر.',
-    items: ['حجز من الجوال والموقع', 'واجهة عميلة احترافية', 'لوحات إدارة متجاوبة'],
+    title: 'تجربة متعددة الأجهزة',
+    description: 'واجهة تشغيل عملية على الكمبيوتر والآيباد والجوال، مع تجربة منفصلة للعميلة والإدارة والموظفة.',
+    items: ['واجهة عميلة للحجز والمتابعة', 'لوحة إدارة متجاوبة', 'بوابة خاصة للموظفات'],
+  },
+  {
+    icon: Layers,
+    title: 'وحدات اختيارية',
+    description: 'لا نفرض على المنشأة كل الوحدات. يتم تفعيل ما يناسب نموذج العمل وترك ما لا تحتاجه.',
+    items: ['Cashback / Loyalty عند الرغبة فقط', 'باقات وكوبونات حسب السياسة', 'وحدات إضافية حسب احتياج التشغيل'],
+  },
+]
+
+const hrDetails = [
+  {
+    title: 'ملف وظيفي موحد',
+    description: 'بيانات الموظفة وحالتها الوظيفية وتاريخ البداية والخدمات المرتبطة بها والحساب والصلاحيات في ملف واحد.',
+  },
+  {
+    title: 'الشفتات والحضور',
+    description: 'جداول عمل فعلية مع حضور وانصراف، ومعالجة التأخير والخروج المبكر ونقص الساعات والغياب وفق سياسة المنشأة.',
+  },
+  {
+    title: 'الإجازات والطلبات',
+    description: 'طلبات الموظفات والإجازات تمر بمراجعة واعتماد حسب الصلاحيات بدل ضياعها بين الرسائل والمحادثات.',
+  },
+  {
+    title: 'الملفات والمستندات',
+    description: 'حفظ وتنظيم المستندات والملفات الإدارية المرتبطة بالموظفة لتكون مرجعًا للإدارة عند الحاجة.',
+  },
+  {
+    title: 'بوابة الموظفة',
+    description: 'لكل موظفة تجربة منفصلة تشاهد من خلالها معلوماتها ودوامها وطلباتها وإشعاراتها وما تسمح به صلاحيتها.',
+  },
+  {
+    title: 'رواتب مترابطة مع الواقع',
+    description: 'الراتب يمكن أن يجمع الأساسي والبدلات والمكافآت والعمولات والسلف والخصومات والتسويات وتأثير الحضور والإجازات.',
+  },
+]
+
+const inventoryDetails = [
+  {
+    title: 'تعريف المواد بدقة',
+    description: 'اسم المادة، الوحدة، SKU، حد إعادة الطلب، الملاحظات، الحالة والرصيد الافتتاحي مع أرصدة حسب الموقع.',
+  },
+  {
+    title: 'تنبيه المواد المنخفضة',
+    description: 'تحديد حد إعادة الطلب لكل مادة حتى تعرف الإدارة ما يحتاج شراءً قبل أن ينتهي أثناء تقديم الخدمة.',
+  },
+  {
+    title: 'وصفة استهلاك لكل خدمة',
+    description: 'يمكن ربط الخدمة بمادة محددة أو فئة بدائل وتحديد الكمية القياسية المستخدمة في تنفيذ الخدمة.',
+  },
+  {
+    title: 'لا خصم بمجرد إنشاء الحجز',
+    description: 'إنشاء الحجز لا يعني استهلاك المادة؛ الخصم يتم عند تأكيد التنفيذ والاستهلاك الفعلي لتبقى الأرقام أقرب للواقع.',
+  },
+  {
+    title: 'صرف وهدر وجرد',
+    description: 'تسجيل صرف المواد للموظفات والهدر وفروقات الجرد بدل تغيير الرصيد بدون تفسير أو أثر تشغيلي.',
+  },
+  {
+    title: 'الموردون وأوامر الشراء',
+    description: 'إدارة الموردين وأوامر الشراء واستلام الكميات وربطها بحركة المخزون من دخول المادة حتى استخدامها.',
+  },
+]
+
+const optionalModules = [
+  {
+    icon: Gift,
+    title: 'Cashback / Loyalty',
+    description: 'ميزة اختيارية بالكامل. يمكن تفعيلها بسياسة يحددها الصالون لزيادة عودة العميلة، أو تركها غير مفعلة إذا لم تناسب نموذج العمل.',
+  },
+  {
+    icon: Package,
+    title: 'الباقات والجلسات',
+    description: 'يمكن تفعيل الباقات أو الجلسات والخدمات المركبة عندما تكون جزءًا من طريقة البيع في المنشأة.',
+  },
+  {
+    icon: Workflow,
+    title: 'تخصيص سير العمل',
+    description: 'إذا كان لدى المنشأة Workflow مختلف في الاستقبال أو الإدارة أو المخزون، تتم دراسته وتهيئة المنتج بما يخدم التشغيل الصحيح.',
   },
 ]
 
 const journeySteps = [
   {
     number: '01',
-    title: 'نهيئ هوية المشغل',
-    description: 'إضافة الشعار والألوان والخدمات والأسعار والفروع وبيانات التواصل ضمن تجربة تحمل هوية النشاط.',
+    title: 'نفهم طريقة العمل',
+    description: 'نراجع طريقة الحجز والاستقبال والموظفات والدوام والمخزون والعمليات المالية بدل تركيب إعدادات عامة لا تناسب المنشأة.',
   },
   {
     number: '02',
-    title: 'ننظم التشغيل',
-    description: 'تهيئة الموظفات والجداول والصلاحيات والحجوزات والمدفوعات بما يناسب آلية العمل الفعلية.',
+    title: 'نجهز بيئة المنشأة',
+    description: 'إضافة الهوية والخدمات والأسعار والموظفات والصلاحيات والجداول والإعدادات المطلوبة للتشغيل.',
   },
   {
     number: '03',
-    title: 'نطلق تجربة العميلة',
-    description: 'تبدأ العميلة في استعراض الخدمات والعروض والحجز والمتابعة من واجهة واضحة وسريعة.',
+    title: 'نطلق مع الفريق',
+    description: 'تدريب الإدارة والاستقبال والموظفات على الجزء الخاص بكل دور حتى يكون الانتقال للنظام واضحًا وعمليًا.',
   },
   {
     number: '04',
-    title: 'نقيس ونطور',
-    description: 'تساعد التقارير وسجلات التشغيل على اكتشاف فرص النمو وتقليل الأخطاء وتحسين القرارات.',
+    title: 'نراجع ونطور',
+    description: 'لأن المنتج يتم تطويره مباشرة، يمكن دراسة الاحتياجات الفعلية التي تظهر أثناء التشغيل بدل إجبار الفريق على حلول غير مناسبة.',
   },
 ]
 
 const plans = [
   {
-    name: 'البداية',
-    eyebrow: 'للمشغل الصغير',
-    description: 'الأساس الرقمي المطلوب للانتقال من الإدارة اليدوية إلى نظام منظم.',
+    name: 'الأساسي',
+    eyebrow: 'لبداية منظمة',
+    description: 'الأساس المطلوب للحجوزات والخدمات والعميلات والتشغيل اليومي.',
     features: [
-      'موقع خدمات وحجز إلكتروني',
-      'إدارة الخدمات والأسعار',
-      'إدارة العميلات والحجوزات',
-      'لوحة حجوزات اليوم',
-      'فرع واحد',
-      'دعم وتهيئة أساسية',
+      'الحجز وإدارة الاستقبال',
+      'الخدمات والأسعار',
+      'ملفات العميلات CRM',
+      'لوحة تشغيل اليوم',
+      'صلاحيات أساسية',
+      'تهيئة وإطلاق',
     ],
   },
   {
-    name: 'النمو',
-    eyebrow: 'للمشغل المتوسع',
-    description: 'أدوات البيع والاحتفاظ بالعميلات والتقارير اللازمة لرفع الأداء.',
+    name: 'التشغيل',
+    eyebrow: 'لإدارة أوسع',
+    description: 'توسعة النظام ليشمل الإدارة المالية والتقارير والوحدات التشغيلية المطلوبة.',
     popular: true,
     features: [
-      'كل مميزات باقة البداية',
-      'العروض والكوبونات',
-      'الباقات والجلسات',
-      'الفواتير والمدفوعات',
-      'المصروفات والتقارير',
-      'صلاحيات إدارية متقدمة',
+      'كل مميزات الأساسي',
+      'العروض والأسعار الموسمية',
+      'الإيرادات والمصروفات',
+      'تقارير وتدقيق',
+      'صلاحيات متقدمة',
+      'وحدات اختيارية حسب الحاجة',
     ],
   },
   {
-    name: 'الاحتراف',
-    eyebrow: 'للتشغيل المتكامل',
-    description: 'إدارة أعمق للموظفات والموارد البشرية والرواتب وتجربة التشغيل اليومية.',
+    name: 'المتكامل',
+    eyebrow: 'للـ HR والمخزون',
+    description: 'تشغيل أعمق يربط الموظفات والرواتب والمخزون مع العمليات اليومية للصالون.',
     features: [
-      'كل مميزات باقة النمو',
-      'تطبيق الموظفات',
-      'الحضور والانصراف الجغرافي',
-      'الرواتب والعمولات',
-      'الطابور وشاشة الانتظار',
-      'التدقيق وسجل العمليات',
+      'كل مميزات التشغيل',
+      'HR وبوابة الموظفات',
+      'الحضور والشفتات والإجازات',
+      'الرواتب Payroll',
+      'المخزون والاستهلاك',
+      'الموردون والمشتريات',
     ],
   },
   {
     name: 'المؤسسات',
-    eyebrow: 'للفروع والمجموعات',
-    description: 'حل مخصص للمشاغل متعددة الفروع أو النماذج التشغيلية الأكثر تعقيدًا.',
+    eyebrow: 'للتوسع والفروع',
+    description: 'نطاق مخصص للمنشآت ذات الفروع أو العمليات الأكثر تعقيدًا.',
     features: [
-      'تهيئة الفروع المتعددة',
-      'إدارة الشركاء وتأجير الكراسي',
-      'هوية وتطبيقات مخصصة',
-      'تقارير وصلاحيات مخصصة',
+      'تهيئة للفروع المتعددة',
+      'سياسات وصلاحيات مخصصة',
+      'تقارير ونماذج تشغيل خاصة',
+      'تكاملات أو وحدات إضافية حسب النطاق',
       'أولوية في الدعم والتطوير',
-      'خطة إطلاق وتدريب للفريق',
+      'خطة انتقال وتدريب للفريق',
     ],
   },
 ]
 
 export function MalikatLandingPage() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState('النمو')
+  const [selectedPlan, setSelectedPlan] = useState('التشغيل')
 
   useEffect(() => {
     const previousTitle = document.title
     const previousDirection = document.documentElement.dir
     const previousLanguage = document.documentElement.lang
 
-    document.title = 'مَلِكات | منصة إدارة وتشغيل المشاغل والصالونات'
+    document.title = 'MIHVARA Salon | نظام إدارة وتشغيل الصالونات'
     document.documentElement.dir = 'rtl'
     document.documentElement.lang = 'ar'
     document.body.classList.add('malikat-landing-open')
@@ -231,13 +322,13 @@ export function MalikatLandingPage() {
     const phone = String(formData.get('phone') ?? '').trim()
 
     const message = [
-      'السلام عليكم، أرغب في معرفة تفاصيل منصة مَلِكات.',
+      'السلام عليكم، أرغب في معرفة تفاصيل MIHVARA Salon.',
       `الاسم: ${name}`,
-      `اسم المشغل: ${salon}`,
+      `اسم الصالون / المشغل: ${salon}`,
       `المدينة: ${city}`,
       `عدد الفروع: ${branches}`,
       `رقم التواصل: ${phone}`,
-      `الباقة المهتم بها: ${selectedPlan}`,
+      `النطاق المهتم به: ${selectedPlan}`,
     ].join('\n')
 
     window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer')
@@ -247,21 +338,22 @@ export function MalikatLandingPage() {
     <div className="malikat-page" dir="rtl">
       <header className="malikat-header">
         <div className="malikat-container malikat-header__inner">
-          <a href="#top" className="malikat-brand" aria-label="مَلِكات - الصفحة الرئيسية">
-            <span className="malikat-brand__mark"><Crown aria-hidden="true" size={24} /></span>
+          <a href="#top" className="malikat-brand" aria-label="MIHVARA Salon - الصفحة الرئيسية">
+            <span className="malikat-brand__mark"><Layers aria-hidden="true" size={24} /></span>
             <span>
-              <strong>مَلِكات</strong>
-              <small>إدارة وتشغيل المشاغل</small>
+              <strong>MIHVARA Salon</strong>
+              <small>منتج من منظومة MIHVARA</small>
             </span>
           </a>
 
           <nav className={`malikat-nav ${menuOpen ? 'is-open' : ''}`} aria-label="التنقل الرئيسي">
             <a href="#features" onClick={() => setMenuOpen(false)}>المميزات</a>
-            <a href="#how-it-works" onClick={() => setMenuOpen(false)}>كيف نبدأ</a>
-            <a href="#packages" onClick={() => setMenuOpen(false)}>الباقات</a>
+            <a href="#hr" onClick={() => setMenuOpen(false)}>الموارد البشرية</a>
+            <a href="#inventory" onClick={() => setMenuOpen(false)}>المخزون</a>
+            <a href="#packages" onClick={() => setMenuOpen(false)}>النطاقات</a>
             <a href="#request-demo" onClick={() => setMenuOpen(false)}>اطلب عرضًا</a>
             <a href="/" className="malikat-nav__portfolio" onClick={() => setMenuOpen(false)}>
-              ملف نواف <ArrowLeft aria-hidden="true" size={16} />
+              عن MIHVARA ونواف <ArrowLeft aria-hidden="true" size={16} />
             </a>
           </nav>
 
@@ -288,52 +380,52 @@ export function MalikatLandingPage() {
             <div className="malikat-hero__content">
               <div className="malikat-eyebrow">
                 <Sparkles aria-hidden="true" size={17} />
-                منصة سعودية لإدارة قطاع الجمال
+                منتج تقني لإدارة وتشغيل الصالونات والمشاغل
               </div>
               <h1>
-                أديري مشغلك بالكامل
-                <span>من منصة واحدة.</span>
+                لا تديري الصالون من عدة أماكن.
+                <span>اجمعي التشغيل في نظام واحد.</span>
               </h1>
               <p>
-                مَلِكات تربط الحجوزات والعميلات والخدمات والموظفات والحضور والرواتب والعروض
-                والمدفوعات والتقارير في منظومة تشغيل متكاملة لأصحاب المشاغل والمستثمرين في قطاع الجمال.
+                <strong>MIHVARA Salon</strong> هو أحد منتجات منظومة MIHVARA، ومصمم ليربط الحجز والعميلة والخدمة والموظفة
+                والـHR والرواتب والمخزون والإيرادات والمصروفات والتقارير في بيئة تشغيل واحدة قابلة للتخصيص.
               </p>
 
               <div className="malikat-hero__actions">
                 <a href="#request-demo" className="malikat-button malikat-button--primary">
-                  اطلب عرضًا تجريبيًا
+                  اطلب عرضًا للنظام
                   <ArrowUpRight aria-hidden="true" size={18} />
                 </a>
                 <a href="#features" className="malikat-button malikat-button--ghost">
-                  استعرض المميزات
+                  استعرض التفاصيل
                 </a>
               </div>
 
               <div className="malikat-trust-row">
                 <span><ShieldCheck aria-hidden="true" size={17} /> صلاحيات وأدوار منظمة</span>
-                <span><MonitorSmartphone aria-hidden="true" size={17} /> يعمل على الجوال والكمبيوتر</span>
-                <span><Headphones aria-hidden="true" size={17} /> تهيئة ودعم عند الإطلاق</span>
+                <span><MonitorSmartphone aria-hidden="true" size={17} /> جوال وآيباد وكمبيوتر</span>
+                <span><Headphones aria-hidden="true" size={17} /> تهيئة وتدريب عند الإطلاق</span>
               </div>
             </div>
 
-            <div className="malikat-hero__visual" aria-label="معاينة منصة مَلِكات">
+            <div className="malikat-hero__visual" aria-label="معاينة تطبيق فعلي لـ MIHVARA Salon">
               <div className="malikat-browser">
                 <div className="malikat-browser__bar">
                   <span className="malikat-browser__dots"><i /><i /><i /></span>
-                  <span className="malikat-browser__address">malikat.com/dashboard</span>
+                  <span className="malikat-browser__address">MIHVARA Salon / Dashboard</span>
                   <span className="malikat-browser__secure"><Lock aria-hidden="true" size={13} /></span>
                 </div>
-                <img src="/media/queens-salon-desktop.png" alt="واجهة موقع مَلِكات على الكمبيوتر" />
+                <img src="/media/queens-salon-desktop.png" alt="مثال من تطبيق MIHVARA Salon في صالون ملكات" />
               </div>
 
               <div className="malikat-floating-card malikat-floating-card--bookings">
                 <span className="malikat-floating-card__icon"><CalendarCheck aria-hidden="true" size={19} /></span>
-                <span><small>تشغيل اليوم</small><strong>الحجوزات تحت السيطرة</strong></span>
+                <span><small>تشغيل اليوم</small><strong>الحجوزات والخدمات تحت السيطرة</strong></span>
               </div>
 
               <div className="malikat-floating-card malikat-floating-card--reports">
                 <span className="malikat-floating-card__icon"><BarChart3 aria-hidden="true" size={19} /></span>
-                <span><small>قرار أوضح</small><strong>تقارير تشغيلية ومالية</strong></span>
+                <span><small>قرار أوضح</small><strong>تقارير مبنية على التشغيل الفعلي</strong></span>
               </div>
             </div>
           </div>
@@ -351,9 +443,45 @@ export function MalikatLandingPage() {
         <section className="malikat-problem-section">
           <div className="malikat-container">
             <div className="malikat-section-heading malikat-section-heading--center">
-              <span>من الفوضى إلى نظام واضح</span>
-              <h2>المشغل لا يحتاج برنامجًا إضافيًا.<br />يحتاج نظام تشغيل يجمع كل شيء.</h2>
-              <p>كلما كانت البيانات موزعة بين المحادثات والجداول والدفاتر، زادت الأخطاء وضاعت فرص النمو.</p>
+              <span>الفكرة الأساسية</span>
+              <h2>MIHVARA هي المنظومة.<br />MIHVARA Salon هو منتج الصالونات. وملكات عميل فعلي.</h2>
+              <p>
+                «ملكات» ليس اسم البرنامج. هو صالون يستخدم النظام فعليًا. المنتج مصمم ليتم تجهيز بيئة مستقلة لكل صالون
+                بهويته وخدماته وموظفاته وسياساته، مع تطوير مستمر من نفس الفريق الذي يبني المنتج.
+              </p>
+            </div>
+
+            <div className="malikat-pain-grid">
+              <article>
+                <span className="malikat-pain-grid__number">01</span>
+                <h3>MIHVARA</h3>
+                <p>المظلة التقنية الأوسع التي نبني تحتها منتجات تشغيل وإدارة لقطاعات مختلفة.</p>
+              </article>
+              <article>
+                <span className="malikat-pain-grid__number">02</span>
+                <h3>MIHVARA Salon</h3>
+                <p>المنتج المتخصص في إدارة وتشغيل الصالونات والمشاغل وربط العمليات اليومية في نظام واحد.</p>
+              </article>
+              <article>
+                <span className="malikat-pain-grid__number">03</span>
+                <h3>صالون ملكات</h3>
+                <p>أحد التطبيقات التشغيلية الفعلية للمنتج، وتظهر بعض شاشاته في هذه الصفحة كمثال واقعي.</p>
+              </article>
+              <article>
+                <span className="malikat-pain-grid__number">04</span>
+                <h3>صالونك</h3>
+                <p>يحصل على بيئته الخاصة وهويته وخدماته وموظفاته وصلاحياته وإعداداته، وليس نسخة باسم ملكات.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="malikat-problem-section">
+          <div className="malikat-container">
+            <div className="malikat-section-heading malikat-section-heading--center">
+              <span>لماذا النظام؟</span>
+              <h2>المشكلة ليست نقص البرامج.<br />المشكلة أن التشغيل متفرق.</h2>
+              <p>كلما كانت البيانات موزعة بين واتساب ودفاتر وExcel وذاكرة الموظفات، زادت الأخطاء وصعبت الرقابة والتوسع.</p>
             </div>
 
             <div className="malikat-pain-grid">
@@ -371,9 +499,9 @@ export function MalikatLandingPage() {
         <section id="features" className="malikat-features-section">
           <div className="malikat-container">
             <div className="malikat-section-heading">
-              <span>منظومة متكاملة</span>
-              <h2>كل ما يحتاجه المشغل، في مكان واحد.</h2>
-              <p>المميزات تتوزع على الباقات حسب حجم المشغل واحتياجاته التشغيلية، مع إمكانية التهيئة والتخصيص.</p>
+              <span>منظومة تشغيل متكاملة</span>
+              <h2>من الحجز إلى الإدارة والـHR والمخزون.</h2>
+              <p>الوحدات تُهيأ حسب احتياج المنشأة. وجود ميزة في المنتج لا يعني أنها مفروضة على كل صالون.</p>
             </div>
 
             <div className="malikat-feature-grid">
@@ -396,30 +524,99 @@ export function MalikatLandingPage() {
           </div>
         </section>
 
+        <section id="hr" className="malikat-features-section">
+          <div className="malikat-container">
+            <div className="malikat-section-heading">
+              <span>HR داخل نفس نظام الصالون</span>
+              <h2>الموظفة ليست اسمًا في جدول الحجوزات فقط.</h2>
+              <p>
+                MIHVARA Salon يتعامل مع الموظفة كملف تشغيلي وإداري متكامل؛ من الشفت والحضور إلى الإجازات والطلبات
+                والمستندات والرواتب، مع فصل صلاحيات الإدارة عن بوابة الموظفة.
+              </p>
+            </div>
+
+            <div className="malikat-feature-grid">
+              {hrDetails.map((item) => (
+                <article key={item.title} className="malikat-feature-card">
+                  <div className="malikat-feature-card__icon"><Users aria-hidden="true" size={23} /></div>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="inventory" className="malikat-features-section">
+          <div className="malikat-container">
+            <div className="malikat-section-heading">
+              <span>مركز رقابة المخزون</span>
+              <h2>نعرف كم بقي، ولماذا نقص، وأين استُخدم.</h2>
+              <p>
+                المخزون مرتبط بالتشغيل الحقيقي: المواد والمواقع وحد إعادة الطلب ووصفات استهلاك الخدمات والصرف والهدر والجرد
+                والموردون وأوامر الشراء، مع سجل حركة بدل التعديل الصامت للأرقام.
+              </p>
+            </div>
+
+            <div className="malikat-feature-grid">
+              {inventoryDetails.map((item) => (
+                <article key={item.title} className="malikat-feature-card">
+                  <div className="malikat-feature-card__icon"><Boxes aria-hidden="true" size={23} /></div>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="malikat-showcase-section">
           <div className="malikat-container malikat-showcase-grid">
             <div className="malikat-showcase-copy">
-              <span className="malikat-section-label">تجربة متصلة</span>
-              <h2>واجهة للعميلة، وتحكم كامل للإدارة.</h2>
+              <span className="malikat-section-label">تطبيق فعلي، وليس Mockup فقط</span>
+              <h2>صالون ملكات يستخدم المنتج كبيئة تشغيل حقيقية.</h2>
               <p>
-                تبدأ الرحلة من استعراض الخدمة والعرض والحجز، ثم تنتقل مباشرة إلى فريق الاستقبال والموظفة
-                والمدفوعات والتقارير؛ دون إعادة إدخال البيانات أو فقدان السياق.
+                بعض الصور هنا من التطبيق الفعلي للنظام في صالون ملكات. هذه التجربة التشغيلية هي التي تكشف المشاكل الحقيقية
+                في الاستقبال والحجوزات والأسعار والموظفات والدوام والمخزون، وتدفع تطوير المنتج على أساس استخدام يومي حقيقي.
               </p>
               <div className="malikat-showcase-points">
-                <span><MonitorSmartphone aria-hidden="true" size={19} /> تجربة متجاوبة على جميع الأجهزة</span>
                 <span><Workflow aria-hidden="true" size={19} /> تدفق موحد من الحجز حتى إغلاق العملية</span>
-                <span><Layers aria-hidden="true" size={19} /> وحدات يمكن تفعيلها حسب الباقة</span>
+                <span><MonitorSmartphone aria-hidden="true" size={19} /> تجربة متجاوبة على الأجهزة المستخدمة داخل الصالون</span>
+                <span><ShieldCheck aria-hidden="true" size={19} /> بيانات وصلاحيات منفصلة لكل دور</span>
               </div>
             </div>
 
             <div className="malikat-device-stage">
               <div className="malikat-device-stage__tablet">
-                <img src="/media/queens-salon-tablet.png" alt="واجهة مَلِكات على الجهاز اللوحي" loading="lazy" />
+                <img src="/media/queens-salon-tablet.png" alt="تطبيق MIHVARA Salon في بيئة صالون ملكات على الآيباد" loading="lazy" />
               </div>
               <div className="malikat-device-stage__phone">
                 <span />
-                <img src="/media/queens-salon-mobile.png" alt="واجهة مَلِكات على الجوال" loading="lazy" />
+                <img src="/media/queens-salon-mobile.png" alt="تطبيق MIHVARA Salon في بيئة صالون ملكات على الجوال" loading="lazy" />
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="malikat-features-section">
+          <div className="malikat-container">
+            <div className="malikat-section-heading">
+              <span>اختياري، وليس إجباريًا</span>
+              <h2>النظام يتكيف مع نموذج عمل الصالون.</h2>
+              <p>لا نربط الاشتراك بسياسة تسويقية أو تشغيلية لا تريدها المنشأة. الوحدات الإضافية تُفعّل فقط عند الحاجة.</p>
+            </div>
+
+            <div className="malikat-feature-grid">
+              {optionalModules.map((module) => {
+                const Icon = module.icon
+                return (
+                  <article key={module.title} className="malikat-feature-card">
+                    <div className="malikat-feature-card__icon"><Icon aria-hidden="true" size={23} /></div>
+                    <h3>{module.title}</h3>
+                    <p>{module.description}</p>
+                  </article>
+                )
+              })}
             </div>
           </div>
         </section>
@@ -427,9 +624,9 @@ export function MalikatLandingPage() {
         <section id="how-it-works" className="malikat-journey-section">
           <div className="malikat-container">
             <div className="malikat-section-heading malikat-section-heading--center">
-              <span>إطلاق منظم</span>
-              <h2>من التعرف على المشغل إلى التشغيل الفعلي.</h2>
-              <p>لا نبيع اشتراكًا ونتركك. نبدأ بفهم طريقة العمل، ثم نهيئ النظام ونطلقه مع الفريق.</p>
+              <span>الإطلاق مع الصالون</span>
+              <h2>لا تحصلين على رابط وتُتركين لتجهزيه بنفسك.</h2>
+              <p>نبدأ بفهم التشغيل ثم تهيئة النظام وتدريب الفريق، وبعدها نراجع ما يظهر من احتياجات فعلية.</p>
             </div>
 
             <div className="malikat-journey-grid">
@@ -447,15 +644,15 @@ export function MalikatLandingPage() {
         <section id="packages" className="malikat-packages-section">
           <div className="malikat-container">
             <div className="malikat-section-heading malikat-section-heading--center">
-              <span>باقات مرنة</span>
-              <h2>ابدئي بما تحتاجينه، وتوسعي عندما يكبر المشغل.</h2>
-              <p>يُحدد السعر النهائي حسب عدد الفروع والموظفات والوحدات المطلوبة ومستوى التخصيص والدعم.</p>
+              <span>نطاقات مرنة</span>
+              <h2>ابدئي بما تحتاجينه فعليًا، ثم توسعي.</h2>
+              <p>التسعير النهائي يعتمد على عدد الفروع والموظفات والوحدات المطلوبة ومستوى التهيئة والتخصيص والدعم.</p>
             </div>
 
             <div className="malikat-plans-grid">
               {plans.map((plan) => (
                 <article key={plan.name} className={`malikat-plan-card ${plan.popular ? 'is-popular' : ''}`}>
-                  {plan.popular ? <div className="malikat-plan-card__badge">الأكثر مناسبة للنمو</div> : null}
+                  {plan.popular ? <div className="malikat-plan-card__badge">مناسب لمعظم الصالونات</div> : null}
                   <div className="malikat-plan-card__top">
                     <span>{plan.eyebrow}</span>
                     <h3>{plan.name}</h3>
@@ -463,7 +660,7 @@ export function MalikatLandingPage() {
                   </div>
                   <div className="malikat-plan-card__price">
                     <strong>تسعير مخصص</strong>
-                    <small>بحسب حجم التشغيل</small>
+                    <small>بحسب حجم ونطاق التشغيل</small>
                   </div>
                   <ul>
                     {plan.features.map((feature) => (
@@ -471,7 +668,7 @@ export function MalikatLandingPage() {
                     ))}
                   </ul>
                   <button type="button" onClick={() => selectPlan(plan.name)}>
-                    اطلب تفاصيل الباقة
+                    اطلب تفاصيل النطاق
                     <ArrowUpRight aria-hidden="true" size={17} />
                   </button>
                 </article>
@@ -481,8 +678,8 @@ export function MalikatLandingPage() {
             <div className="malikat-package-note">
               <ShieldCheck aria-hidden="true" size={22} />
               <div>
-                <strong>توزيع المميزات النهائي يتم بعد مراجعة التشغيل.</strong>
-                <p>بعض المميزات تحتاج تهيئة أو ربطًا خاصًا بحسب نظام المشغل، لذلك لا ننشر وعودًا عامة قبل تحديد النطاق.</p>
+                <strong>لا يتم فرض كل الوحدات على كل منشأة.</strong>
+                <p>نراجع طريقة العمل أولًا، ثم نحدد الوحدات والإعدادات المناسبة. الـCashback والولاء مثال واضح على وحدة اختيارية يمكن تفعيلها أو تركها.</p>
               </div>
             </div>
           </div>
@@ -491,14 +688,14 @@ export function MalikatLandingPage() {
         <section className="malikat-value-section">
           <div className="malikat-container malikat-value-grid">
             <div>
-              <span className="malikat-section-label">قيمة حقيقية للمستثمر</span>
-              <h2>النظام ليس تكلفة تقنية؛ بل أصل تشغيلي يرفع قابلية التوسع.</h2>
+              <span className="malikat-section-label">قيمة تشغيلية للإدارة</span>
+              <h2>الهدف أن يصبح النظام هو المرجع، بدل أن تسألي كل مرة: ماذا حدث؟</h2>
             </div>
             <div className="malikat-value-list">
-              <article><Clock aria-hidden="true" size={21} /><span><strong>وقت أقل في المتابعة اليدوية</strong><small>تقليل التنقل بين المحادثات والجداول والدفاتر.</small></span></article>
-              <article><BarChart3 aria-hidden="true" size={21} /><span><strong>قرارات مبنية على بيانات</strong><small>رؤية أوضح للحجوزات والإيرادات والمصروفات والأداء.</small></span></article>
-              <article><Building2 aria-hidden="true" size={21} /><span><strong>جاهزية أعلى للتوسع</strong><small>توحيد الإجراءات قبل إضافة موظفات أو فروع جديدة.</small></span></article>
-              <article><ShieldCheck aria-hidden="true" size={21} /><span><strong>حوكمة وصلاحيات أفضل</strong><small>كل مستخدم يرى وينفذ ما يناسب دوره فقط.</small></span></article>
+              <article><Clock aria-hidden="true" size={21} /><span><strong>وقت أقل في المتابعة اليدوية</strong><small>تقليل التنقل بين واتساب والجداول والدفاتر والسجلات المنفصلة.</small></span></article>
+              <article><BarChart3 aria-hidden="true" size={21} /><span><strong>قرار مبني على بيانات</strong><small>معرفة التشغيل والإيرادات والمصروفات والأداء من مصدر واحد.</small></span></article>
+              <article><Building2 aria-hidden="true" size={21} /><span><strong>جاهزية أعلى للتوسع</strong><small>توحيد الإجراءات قبل زيادة الفريق أو إضافة فروع جديدة.</small></span></article>
+              <article><ShieldCheck aria-hidden="true" size={21} /><span><strong>حوكمة ومساءلة أوضح</strong><small>صلاحيات وسجل عمليات بدل التعديل غير الموثق أو الاعتماد على الذاكرة.</small></span></article>
             </div>
           </div>
         </section>
@@ -506,14 +703,17 @@ export function MalikatLandingPage() {
         <section id="request-demo" className="malikat-request-section">
           <div className="malikat-container malikat-request-grid">
             <div className="malikat-request-copy">
-              <span className="malikat-section-label">ابدأ الخطوة الأولى</span>
-              <h2>خلّنا نفهم مشغلك ونبني لك العرض المناسب.</h2>
-              <p>أرسل بيانات بسيطة، وستفتح لك رسالة واتساب جاهزة تحتوي على طلبك والباقة التي اخترتها.</p>
+              <span className="malikat-section-label">الخطوة التالية</span>
+              <h2>شاهدي النظام عمليًا على سيناريو صالون حقيقي.</h2>
+              <p>
+                بدل شرح طويل بالرسائل، نعرض رحلة حقيقية: حجز عميلة، اختيار الخدمة والموظفة، متابعة العملية، ثم الإدارة والـHR
+                والرواتب والمخزون والتقارير. بعدها نحدد هل المنتج مناسب للصالون وما النطاق المطلوب.
+              </p>
 
               <div className="malikat-request-summary">
-                <span><FileText aria-hidden="true" size={19} /> تحليل احتياج المشغل</span>
-                <span><Package aria-hidden="true" size={19} /> اقتراح الباقة المناسبة</span>
-                <span><Headphones aria-hidden="true" size={19} /> شرح مباشر وخطة إطلاق</span>
+                <span><FileText aria-hidden="true" size={19} /> تحليل احتياج الصالون</span>
+                <span><Package aria-hidden="true" size={19} /> تحديد الوحدات المناسبة</span>
+                <span><Headphones aria-hidden="true" size={19} /> عرض مباشر وخطة تهيئة</span>
               </div>
             </div>
 
@@ -524,7 +724,7 @@ export function MalikatLandingPage() {
                   <input name="name" type="text" placeholder="اكتب اسمك" required />
                 </label>
                 <label>
-                  <span>اسم المشغل</span>
+                  <span>اسم الصالون / المشغل</span>
                   <input name="salon" type="text" placeholder="اسم النشاط" required />
                 </label>
               </div>
@@ -548,7 +748,7 @@ export function MalikatLandingPage() {
                 <input name="phone" type="tel" inputMode="tel" placeholder="05xxxxxxxx" required />
               </label>
               <label>
-                <span>الباقة المهتم بها</span>
+                <span>النطاق المهتم به</span>
                 <select value={selectedPlan} onChange={(event) => setSelectedPlan(event.target.value)}>
                   {plans.map((plan) => <option key={plan.name} value={plan.name}>{plan.name}</option>)}
                 </select>
@@ -557,7 +757,7 @@ export function MalikatLandingPage() {
                 إرسال الطلب عبر واتساب
                 <ArrowUpRight aria-hidden="true" size={18} />
               </button>
-              <small>لن يتم تخزين البيانات في الموقع؛ ستُستخدم فقط لإنشاء رسالة واتساب.</small>
+              <small>لن يتم تخزين البيانات في الموقع؛ ستُستخدم فقط لإنشاء رسالة واتساب جاهزة.</small>
             </form>
           </div>
         </section>
@@ -566,14 +766,14 @@ export function MalikatLandingPage() {
       <footer className="malikat-footer">
         <div className="malikat-container malikat-footer__inner">
           <div className="malikat-brand">
-            <span className="malikat-brand__mark"><Crown aria-hidden="true" size={22} /></span>
-            <span><strong>مَلِكات</strong><small>نظام تشغيل متكامل لقطاع الجمال</small></span>
+            <span className="malikat-brand__mark"><Layers aria-hidden="true" size={22} /></span>
+            <span><strong>MIHVARA Salon</strong><small>منتج من منظومة MIHVARA</small></span>
           </div>
           <p>تطوير وإدارة نواف أحمد العليان</p>
           <div className="malikat-footer__links">
             <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noreferrer">واتساب</a>
             <a href="mailto:nawafaaa0@gmail.com">البريد الإلكتروني</a>
-            <a href="/">الملف الشخصي</a>
+            <a href="/">عن المطور والمنظومة</a>
           </div>
         </div>
       </footer>
